@@ -19,13 +19,13 @@ If you have any idea for the tool you can do a pull request
 <br>
 <strong>
 <br>
-* IP Services
+• IP Services
 <br>
-* YTB Downloader
+• YTB Downloader
 <br>
-* Manage webhooks
+• Manage webhooks
 <br>
-* Obfuscator
+• Obfuscator
 <br>
 </strong>
 </br>
