@@ -524,11 +524,12 @@ echo                           Finished press enter to continue
             main()
 
     def batch_obf():
-        os.system("mkdir "+cwd+"\\Obfuscated >nul 2>&1")
-        System.Title("Batch obfuscator")
-        clear()
-        System.Size(180, 35)
-        text=("""
+        try:
+            os.system("mkdir "+cwd+"\\Obfuscated >nul 2>&1")
+            System.Title("Batch obfuscator")
+            clear()
+            System.Size(180, 35)
+            text=("""
  ______        _     _________    ______  ____  ____         ___   ______   ________  _____  _____   ______     ______       _     _________    ___   _______     
 |_   _ \      / \   |  _   _  | .' ___  ||_   ||   _|      .'   `.|_   _ \ |_   __  ||_   _||_   _|.' ____ \  .' ___  |     / \   |  _   _  | .'   `.|_   __ \    
   | |_) |    / _ \  |_/ | | \_|/ .'   \_|  | |__| |       /  .-.  \ | |_) |  | |_ \_|  | |    | |  | (___ \_|/ .'   \_|    / _ \  |_/ | | \_|/  .-.  \ | |__) |   
@@ -536,10 +537,10 @@ echo                           Finished press enter to continue
  _| |__) |_/ /   \ \_  _| |_   \ `.___.'\ _| |  | |_      \  `-'  /_| |__) |_| |_       \ \__/ /   | \____) |\ `.___.'\ _/ /   \ \_  _| |_   \  `-'  /_| |  \ \_  
 |_______/|____| |____||_____|   `.____ .'|____||____|      `.___.'|_______/|_____|       `.__.'     \______.' `.____ .'|____| |____||_____|   `.___.'|____| |___| 
         """)
-        print(Colorate.Horizontal(Colors.yellow_to_red, text, 1))
-        fpath=input("\nDrag the file to obfuscate here: ")
-        with open(temp+"\\tempbat.bat", 'w') as f:
-            f.write(r"""
+            print(Colorate.Horizontal(Colors.yellow_to_red, text, 1))
+            fpath=input("\nDrag the file to obfuscate here: ")
+            with open(temp+"\\tempbat.bat", 'w') as f:
+                f.write(r"""
 @echo off
 set "TempFile=%Temp%\Temp_b64 
 set "OutputFile=%~nx1_encoded%~x0"
@@ -566,36 +567,40 @@ echo                           Finished press enter to continue
 copy %~nx1_encoded%~x0 """+cwd+r"""\Obfuscated >nul
 del %~nx1_encoded%~x0 >nul 2>&1
             """)
-            f.close()
-        os.system(temp+"\\tempbat.bat "+fpath+"")
-        input()
-        main()
+                f.close()
+            os.system(temp+"\\tempbat.bat "+fpath+"")
+            input()
+            main()
+        except(KeyboardInterrupt):
+            clear()
+            main()
     def obfuscator():
-        System.Title("Obfuscator")
-        System.Size(36, 30)
-        text=("""
+        try:
+            System.Title("Obfuscator")
+            System.Size(36, 30)
+            text=("""
    ╠════════════════════════════╣
    ║ [1] Python obfuscator      ║
    ║ [2] Batch obfuscator       ║
-   ║ [3] Test                   ║
    ╠════════════════════════════╣
-        """)
-        print(Colorate.Horizontal(Colors.yellow_to_red, text, 1))
-        choice1 = ("\n              Choice: ")
-        if choice1 == "back":
+            """)
+            print(Colorate.Horizontal(Colors.yellow_to_red, text, 1))
+            choice1 = ("\n              Choice: ")
+            if choice1 == "back":
+                main()
+            print(Colorate.Horizontal(Colors.yellow_to_red, choice1, 1))
+            choice=input("                 ")
+            if choice == "back":
+                main()
+            if choice == "1":
+                python_obf()
+            elif choice == "2":
+                batch_obf()
+            else:
+                obfuscator()
+        except(KeyboardInterrupt):
+            clear()
             main()
-        print(Colorate.Horizontal(Colors.yellow_to_red, choice1, 1))
-        choice=input("                 ")
-        if choice == "back":
-            main()
-        if choice == "1":
-            python_obf()
-        elif choice == "2":
-            batch_obf()
-        elif choice == "3":
-            pscan()
-        else:
-            obfuscator()
     def credit():
         System.Title("Credits")
         System.Size(80, 30)
@@ -661,6 +666,10 @@ except(KeyboardInterrupt):
     clear()
     print(colored("Stopped", "green"))
     exit()
+except(SystemExit):
+    clear()
+    print(colored("Stopped", "green"))
 except:
     clear()
     print(colored("Error please contact the creator: lululepu#3412", "red"))
+    input()
