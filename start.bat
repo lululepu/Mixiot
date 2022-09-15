@@ -1,9 +1,7 @@
 @echo off
-:someRoutine
-setlocal
-%@Try%
-  python Mixiot.py
-%@EndTry%
-:@Catch
-  py Mixiot.py
-:@EndCatch
+python Mixiot.py
+if  errorlevel 1 goto ERROR
+goto EOF
+:ERROR
+py Mixiot.py
+:EOF 

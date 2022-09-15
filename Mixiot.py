@@ -68,8 +68,8 @@ try:
     username = os.getenv('USERNAME')
 
     __liscense__="Created by lululepu#3412"
-
-    banner = r"""
+    def ascii():
+        banner = r"""
             .-~~``~~-,
           (          \
        .--'`-.__,     \
@@ -104,7 +104,7 @@ try:
                                '.   \.'|
                                  '-.__/"""[1:]
 
-    def ascii():
+
         System.Title("Mixiot")
         System.Size(90, 50)
         Anime.Fade(Center.Center(banner), Colors.yellow_to_red, Colorate.Vertical, interval=0.01, enter=True)
@@ -596,7 +596,6 @@ del %~nx1_encoded%~x0 >nul 2>&1
             pscan()
         else:
             obfuscator()
-
     def credit():
         System.Title("Credits")
         System.Size(80, 30)
@@ -651,12 +650,17 @@ Using it without giving credit would lead to Breaking the License law""", "green
         elif choice == "8":
             clear()
             print(colored("Stopped", "green"))
-            quit()
+            exit()
+
         else:
             main()
 
-    main()
+    if __name__ == "__main__":
+        main()
 except(KeyboardInterrupt):
     clear()
     print(colored("Stopped", "green"))
     exit()
+except:
+    clear()
+    print(colored("Error please contact the creator: lululepu#3412", "red"))
