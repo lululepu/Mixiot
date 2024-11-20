@@ -1,3 +1,6 @@
+This is an archive (my first real python project for when i was 12 x))
+
+
 -----
 ### <p align="center">Mixiot</p>
 -----
